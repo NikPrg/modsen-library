@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Table(name = "books")
 @Entity
@@ -12,18 +13,22 @@ import java.util.List;
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
+@Builder
 public class Book {
 
     @Id
     @SequenceGenerator(name = "book_generator", allocationSize = 5)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_generator")
     private Long id;
+    private UUID externalId;
     private String isbn;
     private String title;
     private String description;
     private String genre;
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<Author> authors;
 
+    @Enumerated(value = EnumType.STRING)
+    private BookStatus bookStatus;
 }

@@ -10,7 +10,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-import static com.example.libraryapi.utill.ExceptionMessagesConstants.WRONG_CREDENTIALS_BY_EMAIL_ERROR_MESSAGE;
+import static com.example.libraryapi.utils.ExceptionMessagesConstants.WRONG_CREDENTIALS_BY_EMAIL_ERROR_MESSAGE;
 
 
 @RequiredArgsConstructor

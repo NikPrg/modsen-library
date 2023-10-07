@@ -24,8 +24,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import static com.example.libraryapi.utill.ExceptionMessagesConstants.AUTHORIZATION_HEADER_NOT_PROVIDED;
-import static com.example.libraryapi.utill.ExceptionMessagesConstants.USER_NOT_AUTHENTICATED_ERROR_MESSAGE;
+import static com.example.libraryapi.utils.ExceptionMessagesConstants.AUTHORIZATION_HEADER_NOT_PROVIDED;
+import static com.example.libraryapi.utils.ExceptionMessagesConstants.USER_NOT_AUTHENTICATED_ERROR_MESSAGE;
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
 @Slf4j

@@ -100,7 +100,4 @@ public class GlobalExceptionHandler {
                 .message(message)
                 .build();
     }
-
-    //EntityNotFoundException
-
 }

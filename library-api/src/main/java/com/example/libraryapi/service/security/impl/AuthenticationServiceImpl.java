@@ -25,7 +25,7 @@ import java.time.Instant;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static com.example.libraryapi.utill.ExceptionMessagesConstants.*;
+import static com.example.libraryapi.utils.ExceptionMessagesConstants.*;
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
 @Service

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.example.libraryapi.utill.ExceptionMessagesConstants.USER_NOT_FOUND_BY_EMAIL_ERROR_MESSAGE;
+import static com.example.libraryapi.utils.ExceptionMessagesConstants.USER_NOT_FOUND_BY_EMAIL_ERROR_MESSAGE;
 
 @Slf4j
 @Service

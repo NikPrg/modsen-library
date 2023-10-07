@@ -24,5 +24,6 @@ public class User {
     private String email;
     //todo: change to enum
     private String roles;
+    //createdAt
 
 }

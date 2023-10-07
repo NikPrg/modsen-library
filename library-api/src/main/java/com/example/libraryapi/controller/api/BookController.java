@@ -1,16 +1,18 @@
 package com.example.libraryapi.controller.api;
 
+import com.example.libraryapi.dto.BookInfoRequest;
 import com.example.libraryapi.dto.PageRequestInfo;
 import com.example.libraryapi.service.BookService;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import static com.example.libraryapi.utill.HttpUtils.PUBLIC_API_V1;
+import static com.example.libraryapi.utils.HttpUtils.PUBLIC_API_V1;
 
 @Controller
 @RequestMapping(PUBLIC_API_V1)
@@ -27,6 +29,31 @@ public class BookController {
     {
         model.addAttribute("books", bookService.findAll(new PageRequestInfo(page, amount)));
         return "books/index";
+    }
+
+    @GetMapping("/books/{externalId}")
+    public String findByExternalId(@PathVariable(name = "externalId") String id, Model model){
+        model.addAttribute("book", bookService.findByExternalId(id));
+        return "books/show";
+    }
+
+    @GetMapping("/books/isbn/{isbn}")
+    public String findByIsbn(@PathVariable(name = "isbn") String isbn, Model model){
+        model.addAttribute("book", bookService.findByIsbn(isbn));
+        return "books/show";
+    }
+
+    @PostMapping("/books")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void create(@RequestBody @Valid BookInfoRequest request){
+        bookService.create(request);
+    }
+
+    @PutMapping("/books/{externalId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void update(@RequestBody @Valid BookInfoRequest request,
+                       @PathVariable(name = "externalId") String id){
+        bookService.update(request, id);
     }
 
 }

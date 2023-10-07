@@ -38,7 +38,9 @@ public class SecurityConfig {
                         request.requestMatchers(
                                         "/public/api/v1/users/auth/login",
                                         "/public/api/v1/users/auth/logout",
-                                        "/public/api/v1/books"
+                                        "/public/api/v1/books",
+                                        "/public/api/v1/books/{externalId}",
+                                        "/public/api/v1/books/isbn/{isbn}"
                                 )
                                 .permitAll()
                                 .anyRequest()
