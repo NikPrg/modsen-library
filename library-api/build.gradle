@@ -11,8 +11,18 @@ java {
     sourceCompatibility = '17'
 }
 
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
 repositories {
     mavenCentral()
+}
+
+ext {
+    set('jsonWebTokenVersion', '0.11.5')
 }
 
 dependencies {
@@ -23,9 +33,19 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 
+    //security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation("io.jsonwebtoken:jjwt-api:${jsonWebTokenVersion}")
+    runtimeOnly("io.jsonwebtoken:jjwt-impl:${jsonWebTokenVersion}")
+    runtimeOnly("io.jsonwebtoken:jjwt-jackson:${jsonWebTokenVersion}")
+
     //db
     implementation 'org.flywaydb:flyway-core'
     runtimeOnly 'org.postgresql:postgresql'
+
+    //util
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
 
     //test
     implementation 'org.springframework.boot:spring-boot-starter'

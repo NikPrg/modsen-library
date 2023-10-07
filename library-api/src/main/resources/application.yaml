@@ -2,6 +2,10 @@ spring:
   application:
     name: library-api
 
+  jackson:
+    serialization:
+      write-date-timestamps-as-nanoseconds: false
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -14,3 +18,14 @@ spring:
 
   main:
     allow-circular-references: true
+
+app:
+  security:
+    token-settings:
+      access-token-life-time-in-minutes: 3600
+    secret-key: "5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437"
+    white-list:
+      - url: /public/api/v1/users/auth/login
+        methods: POST
+      - url: /public/api/v1/users/auth/logout
+        methods: POST
