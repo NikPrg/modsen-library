@@ -101,4 +101,6 @@ public class GlobalExceptionHandler {
                 .build();
     }
 
+    //EntityNotFoundException
+
 }

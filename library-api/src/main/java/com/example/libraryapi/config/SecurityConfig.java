@@ -2,7 +2,7 @@ package com.example.libraryapi.config;
 
 import com.example.libraryapi.filter.AuthFilter;
 import com.example.libraryapi.filter.ExceptionHandlerFilter;
-import com.example.libraryapi.service.provider.UserAuthenticationProvider;
+import com.example.libraryapi.service.security.provider.UserAuthenticationProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,7 +37,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(request ->
                         request.requestMatchers(
                                         "/public/api/v1/users/auth/login",
-                                        "/public/api/v1/users/auth/logout")
+                                        "/public/api/v1/users/auth/logout",
+                                        "/public/api/v1/books"
+                                )
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated()

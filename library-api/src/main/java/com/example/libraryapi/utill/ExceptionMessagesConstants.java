@@ -11,4 +11,6 @@ public class ExceptionMessagesConstants {
     public static String INVALID_TOKEN_ERROR_MESSAGE = "Invalid token has been provided";
     public static String AUTHORIZATION_HEADER_NOT_PROVIDED = "Authorization header must be provided";
 
+    public static String BOOKS_NOT_FOUND_EXCEPTION = "No books have been found";
+
 }

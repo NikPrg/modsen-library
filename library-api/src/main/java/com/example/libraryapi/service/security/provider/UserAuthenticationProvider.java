@@ -1,4 +1,4 @@
-package com.example.libraryapi.service.provider;
+package com.example.libraryapi.service.security.provider;
 
 import com.example.libraryapi.dto.AuthClientDetails;
 import com.example.libraryapi.exception.BadCredentialsException;

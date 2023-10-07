@@ -1,21 +1,22 @@
 package com.example.libraryapi.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.UUID;
 
+@Table(name = "users")
 @Entity
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "users")
+@Getter
+@Setter
+@EqualsAndHashCode(of = "id")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "user_generator", allocationSize = 5)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_generator")
     private Long id;
     private UUID externalId;
     private String name;

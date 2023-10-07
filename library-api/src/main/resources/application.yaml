@@ -29,3 +29,5 @@ app:
         methods: POST
       - url: /public/api/v1/users/auth/logout
         methods: POST
+      - url: /public/api/v1/books
+        methods: GET
