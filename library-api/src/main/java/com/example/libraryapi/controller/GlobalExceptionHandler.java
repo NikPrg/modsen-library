@@ -7,12 +7,15 @@ import com.example.libraryapi.exception.TokenNotProvidedException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RestControllerAdvice
@@ -71,6 +74,25 @@ public class GlobalExceptionHandler {
 
         if (log.isErrorEnabled()) {
             log.error("Handled authentication error: msg='{}', errorId='{}", message, errorId);
+        }
+
+        return ErrorResponse.builder()
+                .id(errorId)
+                .message(message)
+                .build();
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
+        val errorId = UUID.randomUUID().toString();
+        val message = ex.getBindingResult().getFieldErrors()
+                .stream()
+                .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                .collect(Collectors.joining(" | "));
+
+        if (log.isErrorEnabled()) {
+            log.error("Handled method argument not valid error: msg='{}', errorId='{}", message, errorId);
         }
 
         return ErrorResponse.builder()

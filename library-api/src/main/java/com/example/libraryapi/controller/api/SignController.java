@@ -4,6 +4,7 @@ import com.example.libraryapi.dto.AuthClientData;
 import com.example.libraryapi.dto.UserLoginRequest;
 import com.example.libraryapi.service.security.AuthenticationService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class SignController {
 
     @PostMapping("/users/auth/login")
     @ResponseStatus(HttpStatus.OK)
-    public AuthClientData login(@RequestBody UserLoginRequest request) {
+    public AuthClientData login(@RequestBody @Valid UserLoginRequest request) {
         return authenticationService.authenticate(request);
     }
 
