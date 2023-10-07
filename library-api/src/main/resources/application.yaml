@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: library-api
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/library-db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  main:
+    allow-circular-references: true
