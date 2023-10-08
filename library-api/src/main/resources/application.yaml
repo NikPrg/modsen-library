@@ -38,9 +38,3 @@ app:
         methods: POST
       - url: /public/api/v1/users/auth/logout
         methods: POST
-      - url: /public/api/v1/books
-        methods: GET, POST
-      - url: /public/api/v1/books/{externalId}
-        methods: GET, PUT, DELETE
-      - url: /public/api/v1/books/isbn/{isbn}
-        methods: GET

@@ -41,6 +41,12 @@ public class BookController {
         return "books/show";
     }
 
+    @GetMapping("/books/available")
+    public String findAvailableBooks(Model model){
+        model.addAttribute("books", bookService.findAvailableBooks());
+        return "books/index";
+    }
+
     @PostMapping("/books")
     @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody @Valid BookInfoRequest request) {
