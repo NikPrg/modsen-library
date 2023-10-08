@@ -1,5 +1,6 @@
 package com.example.libraryapi.service;
 
+import com.example.libraryapi.config.properties.RestProperties;
 import com.example.libraryapi.dto.BookInfoRequest;
 import com.example.libraryapi.dto.PageRequestInfo;
 import com.example.libraryapi.mapper.BookMapper;
@@ -11,8 +12,12 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,6 +31,8 @@ import static com.example.libraryapi.utils.ExceptionMessagesConstants.*;
 public class BookServiceImpl implements BookService {
     private final BookRepository bookRepo;
     private final BookMapper bookMapper;
+    private final RestTemplate restTemplate;
+    private final RestProperties restProperties;
 
     @Override
     public List<Book> findAll(PageRequestInfo request) {
@@ -71,6 +78,13 @@ public class BookServiceImpl implements BookService {
         val book = bookMapper.map(request);
         book.getAuthors()
                 .forEach(author -> author.setBook(book));
+
+        restTemplate.postForObject(
+                restProperties.libraryTrackerUrl(),
+                new HttpEntity<>(book.getExternalId(), getHttpHeaders()),
+                Void.class
+        );
+
         bookRepo.save(book);
     }
 
@@ -101,6 +115,13 @@ public class BookServiceImpl implements BookService {
 
         stored.getAuthors()
                 .forEach(author -> author.setBook(stored));
+    }
+
+    private HttpHeaders getHttpHeaders() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        return headers;
+
     }
 
 }

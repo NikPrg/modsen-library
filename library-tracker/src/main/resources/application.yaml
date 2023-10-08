@@ -1,0 +1,23 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: library-tracker
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/library-tracker-db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  main:
+    allow-circular-references: true
+
+app:
+  tracker:
+    book-expiration-time-in-minutes: 120

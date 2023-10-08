@@ -1,12 +1,16 @@
 package com.example.libraryapi.config;
 
 
+import com.example.libraryapi.config.properties.RestProperties;
 import com.example.libraryapi.config.properties.SecurityProperties;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.pattern.PathPattern;
 import org.springframework.web.util.pattern.PathPatternParser;
 
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +31,13 @@ public class AppConfig {
                                         .toList()
                         )
                 );
+    }
+
+    @Bean
+    public RestTemplate restTemplate(RestProperties properties){
+        return new RestTemplateBuilder()
+                .setConnectTimeout(Duration.ofMillis(properties.getConnectionTimeoutInMs()))
+                .build();
     }
 
     @Bean

@@ -1,3 +1,6 @@
+server:
+  port: 8080
+
 spring:
   application:
     name: library-api
@@ -20,6 +23,12 @@ spring:
     allow-circular-references: true
 
 app:
+  api:
+    rest:
+      connection-timeout-in-ms: 1000
+      library-tracker:
+        url: http://localhost:8081/private/api/v1/track
+
   security:
     token-settings:
       access-token-life-time-in-minutes: 3600
