@@ -1,7 +1,7 @@
 package com.example.libraryapi.service.security.impl;
 
 import com.example.libraryapi.config.properties.SecurityProperties;
-import com.example.libraryapi.dto.AccessToken;
+import com.example.libraryapi.dto.security.AccessToken;
 import com.example.libraryapi.service.security.TokenService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

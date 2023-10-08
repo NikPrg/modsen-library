@@ -1,4 +1,4 @@
-package com.example.libraryapi.dto;
+package com.example.libraryapi.dto.security;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

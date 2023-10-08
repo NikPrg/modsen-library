@@ -42,7 +42,7 @@ public class BookController {
     }
 
     @GetMapping("/books/available")
-    public String findAvailableBooks(Model model){
+    public String findAvailableBooks(Model model) {
         model.addAttribute("books", bookService.findAvailableBooks());
         return "books/index";
     }

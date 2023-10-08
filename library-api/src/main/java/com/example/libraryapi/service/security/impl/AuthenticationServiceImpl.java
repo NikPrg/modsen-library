@@ -1,8 +1,8 @@
 package com.example.libraryapi.service.security.impl;
 
 import com.example.libraryapi.config.properties.SecurityProperties;
-import com.example.libraryapi.dto.AuthClientData;
-import com.example.libraryapi.dto.UserLoginRequest;
+import com.example.libraryapi.dto.security.AuthClientData;
+import com.example.libraryapi.dto.security.UserLoginRequest;
 import com.example.libraryapi.exception.AuthenticationException;
 import com.example.libraryapi.exception.TokenNotProvidedException;
 import com.example.libraryapi.model.TokenType;

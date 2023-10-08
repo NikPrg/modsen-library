@@ -1,6 +1,6 @@
 package com.example.libraryapi.service.security.impl;
 
-import com.example.libraryapi.dto.AuthClientDetails;
+import com.example.libraryapi.dto.security.AuthClientDetails;
 import com.example.libraryapi.repo.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +29,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         return new AuthClientDetails(
                 user.getEmail(),
                 user.getPassword(),
-                List.of(new SimpleGrantedAuthority("ROLE_".concat(user.getRoles()))),//todo: change to role
+                List.of(new SimpleGrantedAuthority("ROLE_".concat(user.getRoles()))),
                 user.getExternalId().toString()
         );
     }

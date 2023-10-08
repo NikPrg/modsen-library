@@ -16,6 +16,11 @@ public class SecurityProperties {
     private TokenSettings tokenSettings;
     private String secretKey;
     private List<OpenedRoute> whiteList;
+
+    public Integer getAccessTokenLifetimeInMinutes() {
+        return tokenSettings.accessTokenLifetimeInMinutes;
+    }
+
     @Setter
     @Getter
     @AllArgsConstructor
@@ -23,13 +28,11 @@ public class SecurityProperties {
         private String url;
         private String methods;
     }
+
     @Setter
     public static class TokenSettings {
         private Integer accessTokenLifetimeInMinutes;
 
-    }
-    public Integer getAccessTokenLifetimeInMinutes() {
-        return tokenSettings.accessTokenLifetimeInMinutes;
     }
 
 }

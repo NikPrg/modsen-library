@@ -2,7 +2,6 @@ package com.example.libraryapi.mapper;
 
 import com.example.libraryapi.dto.BookInfoRequest;
 import com.example.libraryapi.model.Book;
-import com.example.libraryapi.model.BookStatus;
 import com.example.libraryapi.utils.ISBNGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -25,7 +24,6 @@ public class BookMapper implements Mapper<BookInfoRequest, Book> {
                         .toList())
                 .isbn(ISBNGenerator.generateISBN())
                 .externalId(UUID.randomUUID())
-                .bookStatus(BookStatus.AVAILABLE)
                 .isDeleted(false)
                 .build();
     }
