@@ -23,6 +23,4 @@ public class Author {
     @JsonIgnore
     private Book book;
 
-
-
 }

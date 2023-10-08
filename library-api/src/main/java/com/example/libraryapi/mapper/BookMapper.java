@@ -12,7 +12,6 @@ import java.util.UUID;
 @Component
 @RequiredArgsConstructor
 public class BookMapper implements Mapper<BookInfoRequest, Book> {
-
     private final AuthorMapper authorMapper;
 
     @Override
@@ -27,6 +26,7 @@ public class BookMapper implements Mapper<BookInfoRequest, Book> {
                 .isbn(ISBNGenerator.generateISBN())
                 .externalId(UUID.randomUUID())
                 .bookStatus(BookStatus.AVAILABLE)
+                .isDeleted(false)
                 .build();
     }
 }

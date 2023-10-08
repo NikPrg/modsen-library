@@ -7,7 +7,6 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,35 +24,40 @@ public class BookController {
             @RequestParam(name = "page", required = false) @Positive Integer page,
             @RequestParam(name = "amount", required = false) @Positive Integer amount,
             Model model
-    )
-    {
+    ) {
         model.addAttribute("books", bookService.findAll(new PageRequestInfo(page, amount)));
         return "books/index";
     }
 
     @GetMapping("/books/{externalId}")
-    public String findByExternalId(@PathVariable(name = "externalId") String id, Model model){
+    public String findByExternalId(@PathVariable(name = "externalId") String id, Model model) {
         model.addAttribute("book", bookService.findByExternalId(id));
         return "books/show";
     }
 
     @GetMapping("/books/isbn/{isbn}")
-    public String findByIsbn(@PathVariable(name = "isbn") String isbn, Model model){
+    public String findByIsbn(@PathVariable(name = "isbn") String isbn, Model model) {
         model.addAttribute("book", bookService.findByIsbn(isbn));
         return "books/show";
     }
 
     @PostMapping("/books")
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody @Valid BookInfoRequest request){
+    public void create(@RequestBody @Valid BookInfoRequest request) {
         bookService.create(request);
     }
 
     @PutMapping("/books/{externalId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@RequestBody @Valid BookInfoRequest request,
-                       @PathVariable(name = "externalId") String id){
+                       @PathVariable(name = "externalId") String id) {
         bookService.update(request, id);
+    }
+
+    @DeleteMapping("/books/{externalId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable(name = "externalId") String id) {
+        bookService.delete(id);
     }
 
 }

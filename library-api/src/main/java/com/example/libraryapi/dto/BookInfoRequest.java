@@ -6,12 +6,12 @@ import jakarta.validation.constraints.NotBlank;
 import java.util.List;
 
 public record BookInfoRequest(
-    @NotBlank(message = "Title can't be blank")
-    String title,
-    @NotBlank(message = "Description can't be blank")
-    String description,
-    @NotBlank(message = "Genre can't be blank")
-    String genre,
-    List<@Valid AuthorInfoRequest> authors
+        @NotBlank(message = "Title can't be blank")
+        String title,
+        @NotBlank(message = "Description can't be blank")
+        String description,
+        @NotBlank(message = "Genre can't be blank")
+        String genre,
+        List<@Valid AuthorInfoRequest> authors
 ) {
 }

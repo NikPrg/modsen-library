@@ -32,6 +32,6 @@ app:
       - url: /public/api/v1/books
         methods: GET, POST
       - url: /public/api/v1/books/{externalId}
-        methods: GET, PUT
+        methods: GET, PUT, DELETE
       - url: /public/api/v1/books/isbn/{isbn}
         methods: GET

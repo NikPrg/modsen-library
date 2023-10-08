@@ -25,10 +25,12 @@ public class Book {
     private String title;
     private String description;
     private String genre;
+    private boolean isDeleted;
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Author> authors;
 
     @Enumerated(value = EnumType.STRING)
     private BookStatus bookStatus;
+
 }

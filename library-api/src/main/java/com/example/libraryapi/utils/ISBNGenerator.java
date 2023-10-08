@@ -1,7 +1,5 @@
 package com.example.libraryapi.utils;
 
-import org.springframework.stereotype.Component;
-
 import java.util.Random;
 
 public class ISBNGenerator {
