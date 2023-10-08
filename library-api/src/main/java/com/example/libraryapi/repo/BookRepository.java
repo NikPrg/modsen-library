@@ -53,6 +53,26 @@ public interface BookRepository extends JpaRepository<Book, Long> {
             """, nativeQuery = true)
     Page<Book> findAll(Pageable pageable);
 
+
+    @Query(value = """
+            SELECT
+              bk.id,
+              bk.external_id,
+              bk.isbn,
+              bk.title,
+              bk.description,
+              bk.book_status,
+              bk.is_deleted,
+              bk.genre,
+              authors.full_name
+            FROM
+                books AS bk
+                LEFT JOIN authors ON authors.book_id=bk.id
+            WHERE
+                bk.book_status like 'AVAILABLE'
+            """, nativeQuery = true)
+    List<Book> findAvailableBooks();
+
     @Query(value = """
             SELECT
               bk.id,

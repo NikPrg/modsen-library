@@ -5,6 +5,7 @@ import com.example.libraryapi.dto.BookInfoRequest;
 import com.example.libraryapi.dto.PageRequestInfo;
 import com.example.libraryapi.mapper.BookMapper;
 import com.example.libraryapi.model.Book;
+import com.example.libraryapi.model.BookStatus;
 import com.example.libraryapi.repo.BookRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -52,6 +53,15 @@ public class BookServiceImpl implements BookService {
         if (pageableBooks.isEmpty()) log.error(BOOKS_NOT_FOUND_EXCEPTION);
 
         return pageableBooks.getContent();
+    }
+
+    @Override
+    public List<Book> findAvailableBooks() {
+        var books = bookRepo.findAvailableBooks();
+
+        if(books.isEmpty()) log.error(BOOKS_NOT_FOUND_EXCEPTION);
+
+        return books;
     }
 
     @Override
@@ -103,6 +113,7 @@ public class BookServiceImpl implements BookService {
         var storedBook = bookRepo.findByExternalId(UUID.fromString(id))
                 .orElseThrow(() -> new EntityNotFoundException(BOOK_NOT_FOUND_BY_ID_EXCEPTION.formatted(id)));
         storedBook.setDeleted(true);
+        storedBook.setBookStatus(BookStatus.DELETED);
     }
 
     private void enrichStoredBook(Book stored, Book updated) {

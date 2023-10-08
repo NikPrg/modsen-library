@@ -37,10 +37,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(request ->
                         request.requestMatchers(
                                         "/public/api/v1/users/auth/login",
-                                        "/public/api/v1/users/auth/logout",
-                                        "/public/api/v1/books",
-                                        "/public/api/v1/books/{externalId}",
-                                        "/public/api/v1/books/isbn/{isbn}"
+                                        "/public/api/v1/users/auth/logout"
                                 )
                                 .permitAll()
                                 .anyRequest()
@@ -56,9 +53,7 @@ public class SecurityConfig {
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
-        UserAuthenticationProvider authenticationProvider = new UserAuthenticationProvider(userDetailsService);
-        //todo password encoder
-        return authenticationProvider;
+        return new UserAuthenticationProvider(userDetailsService);
     }
 
     @Bean
