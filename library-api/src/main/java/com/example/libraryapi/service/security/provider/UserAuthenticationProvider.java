@@ -1,6 +1,6 @@
 package com.example.libraryapi.service.security.provider;
 
-import com.example.libraryapi.dto.AuthClientDetails;
+import com.example.libraryapi.dto.security.AuthClientDetails;
 import com.example.libraryapi.exception.BadCredentialsException;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -11,7 +11,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import static com.example.libraryapi.utils.ExceptionMessagesConstants.WRONG_CREDENTIALS_BY_EMAIL_ERROR_MESSAGE;
-
 
 @RequiredArgsConstructor
 @Setter

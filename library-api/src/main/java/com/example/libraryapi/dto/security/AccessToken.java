@@ -1,4 +1,4 @@
-package com.example.libraryapi.dto;
+package com.example.libraryapi.dto.security;
 
 import lombok.Builder;
 import org.springframework.security.core.GrantedAuthority;

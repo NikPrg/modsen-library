@@ -1,6 +1,5 @@
 package com.example.librarytracker.controller;
 
-import com.example.librarytracker.model.BookRecord;
 import com.example.librarytracker.service.BookRecordService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +23,7 @@ public class BookRecordController {
 
     @PostMapping("/track")
     @ResponseStatus(HttpStatus.OK)
-    public void trackBook(HttpEntity<UUID> entity){
+    public void trackBook(HttpEntity<UUID> entity) {
         bookRecordService.save(entity);
     }
 

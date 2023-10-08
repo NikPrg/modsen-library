@@ -12,6 +12,8 @@ public record BookInfoRequest(
         String description,
         @NotBlank(message = "Genre can't be blank")
         String genre,
+        @NotBlank(message = "You should provide book status")
+        String bookStatus,
         List<@Valid AuthorInfoRequest> authors
 ) {
 }

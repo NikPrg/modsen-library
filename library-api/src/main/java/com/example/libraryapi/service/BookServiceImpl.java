@@ -59,7 +59,7 @@ public class BookServiceImpl implements BookService {
     public List<Book> findAvailableBooks() {
         var books = bookRepo.findAvailableBooks();
 
-        if(books.isEmpty()) log.error(BOOKS_NOT_FOUND_EXCEPTION);
+        if (books.isEmpty()) log.error(BOOKS_NOT_FOUND_EXCEPTION);
 
         return books;
     }
@@ -86,6 +86,8 @@ public class BookServiceImpl implements BookService {
     @Override
     public void create(BookInfoRequest request) {
         val book = bookMapper.map(request);
+
+        book.setBookStatus(BookStatus.AVAILABLE);
         book.getAuthors()
                 .forEach(author -> author.setBook(book));
 
@@ -104,6 +106,7 @@ public class BookServiceImpl implements BookService {
         var storedBook = bookRepo.findByExternalId(UUID.fromString(id))
                 .orElseThrow(() -> new EntityNotFoundException(BOOK_NOT_FOUND_BY_ID_EXCEPTION.formatted(id)));
         var updatedBook = bookMapper.map(request);
+        storedBook.setBookStatus(BookStatus.valueOf(request.bookStatus()));
         enrichStoredBook(storedBook, updatedBook);
     }
 

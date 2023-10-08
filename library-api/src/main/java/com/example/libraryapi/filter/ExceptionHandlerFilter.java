@@ -38,7 +38,7 @@ public class ExceptionHandlerFilter extends OncePerRequestFilter {
         if (object == null) {
             return null;
         }
-        var mapper = new ObjectMapper(); //todo: to bean'
+        var mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         return mapper.writeValueAsString(object);
     }

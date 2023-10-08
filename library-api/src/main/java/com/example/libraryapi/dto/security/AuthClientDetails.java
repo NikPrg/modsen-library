@@ -1,4 +1,4 @@
-package com.example.libraryapi.dto;
+package com.example.libraryapi.dto.security;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;

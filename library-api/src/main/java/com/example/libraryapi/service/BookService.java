@@ -9,10 +9,16 @@ import java.util.Optional;
 
 public interface BookService {
     List<Book> findAll(PageRequestInfo request);
+
     List<Book> findAvailableBooks();
+
     Optional<Book> findByExternalId(String id);
+
     Optional<Book> findByIsbn(String isbn);
+
     void create(BookInfoRequest request);
+
     void update(BookInfoRequest request, String id);
+
     void delete(String id);
 }

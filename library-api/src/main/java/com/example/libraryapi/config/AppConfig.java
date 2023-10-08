@@ -34,7 +34,7 @@ public class AppConfig {
     }
 
     @Bean
-    public RestTemplate restTemplate(RestProperties properties){
+    public RestTemplate restTemplate(RestProperties properties) {
         return new RestTemplateBuilder()
                 .setConnectTimeout(Duration.ofMillis(properties.getConnectionTimeoutInMs()))
                 .build();

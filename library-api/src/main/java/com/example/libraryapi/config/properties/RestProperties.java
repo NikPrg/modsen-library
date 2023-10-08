@@ -16,6 +16,7 @@ public class RestProperties {
     @NotNull
     private LibraryTracker libraryTracker;
     private Integer connectionTimeoutInMs;
+
     public record LibraryTracker(String url) {}
 
     public String libraryTrackerUrl(){
