@@ -7,6 +7,7 @@ import java.util.Collection;
 
 public class AuthClientDetails extends User {
     private final String externalId;
+
     public AuthClientDetails(
             String username,
             String password,

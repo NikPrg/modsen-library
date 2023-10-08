@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import static com.example.libraryapi.utill.HttpUtils.PUBLIC_API_V1;
+import static com.example.libraryapi.utils.HttpUtils.PUBLIC_API_V1;
 
 @RestController
 @RequestMapping(PUBLIC_API_V1)
