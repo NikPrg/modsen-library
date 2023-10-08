@@ -1,0 +1,40 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: library-api
+
+  jackson:
+    serialization:
+      write-date-timestamps-as-nanoseconds: false
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/library-db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  main:
+    allow-circular-references: true
+
+app:
+  api:
+    rest:
+      connection-timeout-in-ms: 1000
+      library-tracker:
+        url: http://localhost:8081/private/api/v1/track
+
+  security:
+    token-settings:
+      access-token-life-time-in-minutes: 3600
+    secret-key: "5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437"
+    white-list:
+      - url: /public/api/v1/users/auth/login
+        methods: POST
+      - url: /public/api/v1/users/auth/logout
+        methods: POST
