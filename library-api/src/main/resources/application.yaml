@@ -20,6 +20,12 @@ spring:
     allow-circular-references: true
 
 app:
+  api:
+    rest:
+      connection-timeout-in-ms: 1000
+      library-tracker:
+        url: url
+
   security:
     token-settings:
       access-token-life-time-in-minutes: 3600
