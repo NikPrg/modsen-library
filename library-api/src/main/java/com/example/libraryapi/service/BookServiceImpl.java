@@ -20,9 +20,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import static com.example.libraryapi.utils.ExceptionMessagesConstants.*;
 
@@ -119,6 +123,7 @@ public class BookServiceImpl implements BookService {
         storedBook.setBookStatus(BookStatus.DELETED);
     }
 
+
     private void enrichStoredBook(Book stored, Book updated) {
         stored.getAuthors().clear();
 
@@ -138,4 +143,22 @@ public class BookServiceImpl implements BookService {
 
     }
 
+    public static void main(String[] args) {
+        boolean allPositiveNumber = isAllPositiveNumber("1", "1");
+        System.out.println(allPositiveNumber);
+    }
+
+    public static boolean isAllPositiveNumber(String... arg){
+        return Arrays.stream(arg)
+                .allMatch(BookServiceImpl::isPositiveNumber);
+
+    }
+
+    public static boolean isPositiveNumber(String str) {
+        if (str.equals("1")) {
+            return true;
+        } else {
+            throw new IllegalArgumentException("Passed string isn't a number");
+        }
+    }
 }
